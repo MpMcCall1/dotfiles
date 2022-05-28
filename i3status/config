@@ -1,0 +1,45 @@
+general {
+    colors = true
+    interval = 5
+    color_good = "#0BCC44"
+    color_bad = "#DC322F"
+    color_degraded = "#14148F"
+    output_format = i3bar
+}
+
+order += "disk /"
+order += "cpu_usage"
+order += "memory"
+order += "volume master"
+order += "tztime local"
+order += "time"
+order += "DHCP"
+
+cpu_usage {
+    format = " CPU %usage "
+}
+
+run_watch DHCP {
+        pidfile = "/var/run/dhclient*.pid"
+}
+
+memory {
+    format = " RAM %used "
+}
+
+battery all {
+    format = " %status %percentage "
+        format_down = "No battery"
+        last_full_capacity = true
+        integer_battery_capacity = true
+        low_threshold = 20
+        threshold_type = time
+}
+
+tztime local {
+    format = " %A %Y-%m-%d "
+}
+
+time {
+    format = " %H:%M "
+}
